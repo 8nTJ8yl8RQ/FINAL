@@ -33,25 +33,29 @@
 	}
 	
 	$sqd = new SquadDao($con);
-
-       	$result_array = $sqd->GetAllSquadMem();
+	
+	$sort_criteria ="MembershipID"
+       	$result_array = $sqd->GetAllSquadMem($sort_criteria);
 	
 	$table="";
 	$i= 0;
 	$c = count($result_array);
 	while ($i<$c) {
 		$nm = $result_array[$i]->name;
+		$gn = $result_array[$i]->gender;
 		$st = $result_array[$i]->status;
 		$sq = $result_array[$i]->squadkind;
 		if ($i % 2 == 1){
 			$table .= "<tr class='alt'>
 				   <td><font face='Arial, Helvetica, sans-serif'>$nm</font></td>
+				   <td><font face='Arial, Helvetica, sans-serif'>$gn</font></td>
 				   <td><font face='Arial, Helvetica, sans-serif'>$st</font></td>
                                    <td><font face='Arial, Helvetica, sans-serif'>$sq</font></td>
 				</tr>";
 		} else {
 			$table .= "<tr>
 				   <td><font face='Arial, Helvetica, sans-serif'>$nm</font></td>
+			           <td><font face='Arial, Helvetica, sans-serif'>$gn</font></td>
 				   <td><font face='Arial, Helvetica, sans-serif'>$st</font></td>
                                    <td><font face='Arial, Helvetica, sans-serif'>$sq</font></td>
 				 </tr>";
@@ -108,6 +112,7 @@
 	<table border="0" cellspacing="2" cellpadding="2" id="squads">
 		<tr>
 			<th><font face="Arial, Helvetica, sans-serif">Name</font></th>
+			<th><font face="Arial, Helvetica, sans-serif">Gender</font></th>
 			<th><font face="Arial, Helvetica, sans-serif">Status</font></th>
 			<th><font face="Arial, Helvetica, sans-serif">Squad</font></th>
 		</tr>

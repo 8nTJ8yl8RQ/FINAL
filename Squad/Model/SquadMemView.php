@@ -1,9 +1,6 @@
 <?php
 
 //getSquadMembers display - Last name, first name, Squad, Team, Sport, Status
-//+-----+---------+-----------------+--------+----------------+
-//| MID | SquadID | Name            | Status | Squad          |
-//+-----+---------+-----------------+--------+----------------+
 
 class SquadMemView {
        
@@ -11,25 +8,19 @@ class SquadMemView {
 	public $sqId;
 	public $name;
 	public $status;
-	public $squadkind;	
+	public $squadkind;
+	public $gender;	
 
-//copy construct
-public function __construct($mid, $sid, $nm, $st, $sqk){	
+	//copy construct
+	public function __construct($mid, $sid, $nm, $st, $sqk, $gndr){	
 	$this->MemId     = $mid;
 	$this->sqId      = $sid;
 	$this->name      = $nm ;
 	$this->status    = $st ;
 	$this->squadkind = $sqk;
-}
-//this information can be gathered from the following tables;
-//Squad, SquadMemDetails, Athlete, AthleteGrades-Sport for training Squad, 
+	$this->gender    = $gndr;
 
-//}
-
-//get athlete grades candidate for squad promotion
-//membership id, Last Name, First Name, Grade
-//class squadViewTrainingMember {
-
+	}
 
 }
 

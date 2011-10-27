@@ -11,11 +11,10 @@ class SquadDao {
 private $mysquad;
 //private $db = null;
 public $db = null;
-
 public $data = array();
 
-//private $result ;// resource handler for the last query
 
+//private $result ;// resource handler for the last query
 
 function __construct(
 MySQL &$db
@@ -95,31 +94,16 @@ function GetAllSquad() {
 	
 }
 
-function GetAllSquadMem() {
+function GetAllSquadMem($order) {
 	
-	$sql_stmt="SELECT sqms.MID, sq.SquadID, sqms.Name,sqms.Status, sq.SquadKind as Squad 
-		   FROM Squad sq 
-		   JOIN (
-			SELECT AwSk.MID as MID, sm.SquadID as SquadID, AwSk.Name as Name, AwSk.StatusKind as Status 
-			FROM SquadMemDetails sm 
-			JOIN (
-				SELECT Ast.MembershipID as MID,CONCAT(a.Surname,' ', a.FirstName,' ', a.MiddleInitial,'.') as Name, Ast.StatusKind 
-				FROM Athlete a 
-				JOIN ( 
-					SELECT MembershipID, StatusKind 
-					FROM Status s 
-					JOIN AthleteStatus 
-					WHERE s.StatusID = AthleteStatus.StatusID) as Ast 
-				WHERE Ast.MembershipID = a.MembershipID ) as AwSk
-			WHERE sm.MembershipID=AwSk.MID) as sqms 
-		   WHERE sqms.SquadID=sq.SquadID";
+	$sql_stmt="SELECT DISTINCT * FROM Status NATURAL JOIN AthleteStatus NATURAL JOIN Athlete NATURAL JOIN SquadMemDetails NATURAL JOIN Squad ORDER BY $order";
 
 	$result = mysql_query($sql_stmt);
 	//$squadArray = null;	
 	$squadArray = array();
 	
 	while ($row = mysql_fetch_assoc($result)) {
-		$mySqd = new SquadMemView($row['MID'], $row['SquadID'], $row['Name'], $row['Status'], $row['Squad']);
+		$mySqd = new SquadMemView($row['MID'], $row['SquadID'], $row['Name'], $row['Status'], $row['Squad'], $row['Gender']);
 		array_push($squadArray, $mySqd);
 	}
 	
@@ -172,9 +156,6 @@ function getAllCandidateForPromotion(){
 }
 
 //promote squad members
-//this operation assumes that athletes in AthleteGrades
-//will be removed once it is promoted
-//the removal of these tupples will not be performed here
 function promoteSquadMems(&$memIds,$position){
         //prepare string for the query by concatenating them
         // this step can be moved to another class which perform string operations
@@ -197,7 +178,15 @@ function promoteSquadMems(&$memIds,$position){
 	//update squad MemDetails
 	$this->db->query($sql_stmt);
 
-	//delete from AthleteGrades <- this will not be perfromed here
+	//delete from AthleteGrades
+	$sql_stmt="DELETE FROM AthleteGrades ag 
+                   WHERE ag.MembershipID in ($str_memIds)";
+	$this->db->query($sql_stmt);
+
+	//delete From TeamMembershipDetails
+	$sql_stmt="DELETE FROM TeamMemDetails tmd 
+                   WHERE tmd.MembershipID in ($str_memIds)";
+	$this->db->query($sql_stmt);
 }
 
 function AddSquad($inSquadKind = null) {
