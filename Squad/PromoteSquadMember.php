@@ -110,28 +110,51 @@
 	
  	   //process base on state and inputs generate content
 		if($page_state ==='Start Promotion' ) {
-			$table_head="<th><font face='Arial, Helvetica, sans-serif'>Check IF Promoted</font></th>
+			$table_head="<th><font face='Arial, Helvetica, sans-serif'>Check One to Promote</font></th>
 				     <th><font face='Arial, Helvetica, sans-serif'>Name</font></th>
-         		     	     <th><font face='Arial, Helvetica, sans-serif'>Grade</font></th>
-			     	     <th><font face='Arial, Helvetica, sans-serif'>Sport</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Team</font></th>
+         		     	     <th><font face='Arial, Helvetica, sans-serif'>Sport</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Position</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Primary Position</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Grade</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Gender</font></th>
 			     	     <th><font face='Arial, Helvetica, sans-serif'>Status</font></th>
 			     ";
 			//$promote_candidate=array();
 			while (!empty($result_array) && ( $i < $c )) {
-				$nm  = $result_array[$i]->name;
-				$gr  = $result_array[$i]->grade;
-				$spr = $result_array[$i]->sport;
-				$st  = $result_array[$i]->status;
-				$memID = $result_array[$i]->memId;
+				$nm   = $result_array[$i]->name;
+				$tm   = $result_array[$i]->team; 
+				$spr  = $result_array[$i]->sport;
+				$pos  = $result_array[$i]->position;
+				$ispri= $result_array[$i]->isPrimePos;
+				$gr   = $result_array[$i]->grade;
+				$st   = $result_array[$i]->status;
+				$gen  = $result_array[$i]->gender;
+				$memID= $result_array[$i]->memId;
 				if ($i % 2 == 1){
-					$table .= "<tr class='alt'><td class='small'>
-					<input type='checkbox' value='$memID' name='promote_candidate[]'></td>
-					<td>$nm</td><td>$gr</td><td>$spr</td><td>$st</td>
+					$table .= "<tr class='alt'>
+						<td class='small'>
+						<input type='checkbox' value='$memID' name='promote_candidate[]'></td>
+						<td>$nm</td>
+						<td>$tm</td>
+						<td>$spr</td>
+						<td>$pos</td>
+						<td>$ispri</td>
+						<td>$gr</td>
+						<td>$gen</td>
+						<td>$st</td>
 					</tr>";
 				} else {
-					$table .= "<tr><td class='small'>
-					<input type='checkbox' value='$memID' name='promote_candidate[]'>
-					</td><td>$nm</td><td>$gr</td><td>$spr</td><td>$st</td>
+					$table .= "<tr>
+						<td class='small'><input type='checkbox' value='$memID' name='promote_candidate[]'></td>
+						<td>$nm</td>
+						<td>$tm</td>
+						<td>$spr</td>
+						<td>$pos</td>
+						<td>$ispri</td>
+						<td>$gr</td>
+						<td>$gen</td>
+						<td>$st</td>
 					</tr>";
 				}
 
@@ -139,7 +162,17 @@
 			}
 
 			if(empty($table)) {
-				$table .= "<tr><td>No Entries!</td><td></td><td></td><td></td><td></td></tr>";
+				$table .= "<tr>
+						<td>No Entries!</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>";
 			}	
 	
 		} else{//view  
@@ -155,28 +188,44 @@
 			}
 		
 			$table_head="<th><font face='Arial, Helvetica, sans-serif'>Name</font></th>
-         			     <th><font face='Arial, Helvetica, sans-serif'>Grade</font></th>
-				     <th><font face='Arial, Helvetica, sans-serif'>Sport</font></th>
-				     <th><font face='Arial, Helvetica, sans-serif'>Status</font></th>";
+				     <th><font face='Arial, Helvetica, sans-serif'>Team</font></th>
+         		     	     <th><font face='Arial, Helvetica, sans-serif'>Sport</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Position</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Primary Position</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Grade</font></th>
+				     <th><font face='Arial, Helvetica, sans-serif'>Gender</font></th>
+			     	     <th><font face='Arial, Helvetica, sans-serif'>Status</font></th>";
 
 			while (!empty($result_array) && ( $i < $c )) {
-				$nm  = $result_array[$i]->name;
-				$gr  = $result_array[$i]->grade;
-				$spr = $result_array[$i]->sport;
+				$nm   = $result_array[$i]->name;
+				$tm   = $result_array[$i]->team; 
+				$spr  = $result_array[$i]->sport;
+				$pos  = $result_array[$i]->position;
+				$ispri= $result_array[$i]->isPrimePos;
+				$gr   = $result_array[$i]->grade;
+				$gen   = $result_array[$i]->gender;	
 				$st  = $result_array[$i]->status;
 
 				if ($i % 2 == 1){
 					$table .= "<tr class='alt'>
 							<td><font face='Arial, Helvetica, sans-serif'>$nm </font></td>
-							<td><font face='Arial, Helvetica, sans-serif'>$gr </font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$tm</font></td>
 							<td><font face='Arial, Helvetica, sans-serif'>$spr</font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$pos</font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$ispri</font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$gr </font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$gen</font></td>
 							<td><font face='Arial, Helvetica, sans-serif'>$st </font></td>
 						</tr>";
 				} else {
 					$table .= "<tr>
 							<td><font face='Arial, Helvetica, sans-serif'>$nm </font></td>
-							<td><font face='Arial, Helvetica, sans-serif'>$gr </font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$tm</font></td>
 							<td><font face='Arial, Helvetica, sans-serif'>$spr</font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$pos</font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$ispri</font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$gr </font></td>
+							<td><font face='Arial, Helvetica, sans-serif'>$gen</font></td>
 							<td><font face='Arial, Helvetica, sans-serif'>$st </font></td>
 						</tr>";
 
@@ -187,9 +236,13 @@
 			if(empty($table)) {
 				$table .= "<tr>
 						<td><font face='Arial, Helvetica, sans-serif'>No Entries!</font></td>
-						<td><font face='Arial, Helvetica, sans-serif'> </font></td>
-						<td><font face='Arial, Helvetica, sans-serif'> </font></td>
-						<td><font face='Arial, Helvetica, sans-serif'> </font></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>";
 			}
 		}

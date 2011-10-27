@@ -28,6 +28,9 @@
 	
 	$con = new MySQL("localhost",MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE);
 	
+
+
+
 	try {
 		$con->connect();
 	} catch (Exception $e ) {

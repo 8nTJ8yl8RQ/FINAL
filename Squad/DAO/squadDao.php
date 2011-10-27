@@ -94,16 +94,29 @@ function GetAllSquad() {
 	
 }
 
-function GetAllSquadMem($order) {
+function GetAllSquadMem() {
 	
-	$sql_stmt="SELECT DISTINCT * FROM Status NATURAL JOIN AthleteStatus NATURAL JOIN Athlete NATURAL JOIN SquadMemDetails NATURAL JOIN Squad ORDER BY $order";
+	$sql_stmt="SELECT * 
+		FROM Status 
+			NATURAL JOIN AthleteStatus 
+			NATURAL JOIN Athlete 
+			NATURAL JOIN SquadMemDetails 
+			NATURAL JOIN Squad 
+		ORDER BY SquadKind";
 
 	$result = mysql_query($sql_stmt);
 	//$squadArray = null;	
 	$squadArray = array();
 	
 	while ($row = mysql_fetch_assoc($result)) {
-		$mySqd = new SquadMemView($row['MID'], $row['SquadID'], $row['Name'], $row['Status'], $row['Squad'], $row['Gender']);
+		$mySqd = new SquadMemView(
+					$row['MembershipID']
+					, $row['SquadID']
+					, ($row['Surname'].', '.$row['FirstName'].' '.$row['MiddleInitial'].'.')
+					, $row['StatusKind']
+					, $row['SquadKind']
+					, $row['Gender']
+					);
 		array_push($squadArray, $mySqd);
 	}
 	
@@ -113,40 +126,36 @@ function GetAllSquadMem($order) {
 
 function getAllCandidateForPromotion(){
 
-	$sql_stmt="SELECT s.Sport,trnSp.Grade, trnSp.MembershipID,trnSp.Name,trnSp.Status 
-		   FROM Sport s 
-		   JOIN (
-			SELECT g.Grade,trnsqGr.MembershipID,trnsqGr.SportID,trnsqGr.Name,trnsqGr.Status 
-			FROM Grade g 
-			JOIN (
-				SELECT ag.MembershipID, ag.GradeID, ag.SportID, trnsqSt.SquadID ,trnsqSt.Name ,trnsqSt.Status ,trnsqSt.Squad 
-				FROM AthleteGrades ag 
-				JOIN (
-					SELECT sqms.MID, sq.SquadID, sqms.Name,sqms.Status, sq.SquadKind as Squad 
-					FROM Squad sq 
-					JOIN (
-						SELECT AwSk.MID as MID, sm.SquadID as SquadID, AwSk.Name as Name, AwSk.StatusKind as Status 
-						FROM SquadMemDetails sm 
-						JOIN (
-							SELECT Ast.MembershipID as MID,CONCAT(a.Surname,' ', a.FirstName,' ', a.MiddleInitial,'.') as Name, Ast.StatusKind 
-							FROM Athlete a 
-							JOIN ( 
-								SELECT MembershipID, StatusKind FROM Status s 
-								JOIN AthleteStatus 
-								WHERE s.StatusID = AthleteStatus.StatusID) as Ast 
-							WHERE Ast.MembershipID = a.MembershipID ) as AwSk 
-						WHERE sm.MembershipID=AwSk.MID) as sqms 
-					WHERE (sqms.SquadID=sq.SquadID AND sq.SquadKind='Training Squad') ) as trnsqSt 
-				WHERE ag.MembershipID=trnsqSt.MID) as trnsqGr 
-			WHERE trnsqGr.GradeID=g.GradeID) as trnSp 
-		   WHERE trnSp.SportID=s.SportID";
+	$sql_stmt="SELECT * 
+		FROM Status 
+		NATURAL JOIN AthleteStatus
+		NATURAL JOIN Athlete 
+		NATURAL JOIN SquadMemDetails 
+		NATURAL JOIN Squad 
+		NATURAL JOIN Sport 
+		Natural Join AthleteGrades 
+		Natural Join Grade 
+		Natural join TeamMemDetails 
+		natural join Team 
+		WHERE SquadKind = 'Training Squad' 
+		ORDER BY MembershipID";
 
 	$result = mysql_query($sql_stmt);
 	$squadArray = null;	
 	$squadArray = array();
 	
 	while ($row = mysql_fetch_assoc($result)) {
-		$mySqd = new TrainingSquadMemView($row['Sport'], $row['Grade'], $row['MembershipID'], $row['Name'], $row['Status']);
+		$mySqd = new TrainingSquadMemView(
+						$row['Sport']
+						, $row['Grade']
+						, $row['MembershipID']
+						, ($row['Surname'].', '.$row['FirstName'].' '.$row['MiddleInitial'].'.')
+						, $row['StatusKind']
+						, $row['Gender']
+						, $row['Position']
+						, $row['IsPrimaryPos']
+						, $row['TeamName']						
+						);
 		array_push($squadArray, $mySqd);
 	}
 	

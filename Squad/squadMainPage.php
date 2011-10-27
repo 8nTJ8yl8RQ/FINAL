@@ -19,7 +19,7 @@
 		} 
 	 	else {
 		
-			Location("header : $session->referrer");
+			//Location("header : $session->referrer");
 		
 		}
 	}
@@ -34,8 +34,8 @@
 	
 	$sqd = new SquadDao($con);
 	
-	$sort_criteria ="MembershipID"
-       	$result_array = $sqd->GetAllSquadMem($sort_criteria);
+	//$sort_criteria ="MembershipID"
+       	$result_array = $sqd->GetAllSquadMem();
 	
 	$table="";
 	$i= 0;
