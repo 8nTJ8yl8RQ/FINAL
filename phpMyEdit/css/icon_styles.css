@@ -1,0 +1,84 @@
+/*
+ * Mysql Ajax Table Editor
+ *
+ * Copyright (c) 2008 Chris Kitchen <info@mysqlajaxtableeditor.com>
+ * All rights reserved.
+ *
+ * See COPYING file for license information.
+ *
+ * Download the latest version from
+ * http://www.mysqlajaxtableeditor.com
+ */
+.hidden {
+	display: none;
+}
+
+ul.actions {
+	margin: 0;
+	text-align: left;
+	list-style: none outside;
+	white-space: nowrap;
+	display: inline;
+}
+
+ul.actions li {
+	display: inline;
+	float: left;
+}
+
+ul.actions li a {
+	display: block;
+	width: 22px;
+	height: 17px;
+	margin: 0 2px 0 2px;
+}
+
+li.info a {
+	height: 17px;
+	width: 22px;
+	background: url('../images/icons/info.png') no-repeat center top;
+}
+
+li.info a:hover {
+	background: url('../images/icons/info.png') 50% -19px no-repeat;
+}
+
+li.copy a {
+	height: 17px;
+	width: 22px;
+	background: url('../images/icons/copy.png') no-repeat center top;
+}
+
+li.copy a:hover {
+	background: url('../images/icons/copy.png') 50% -19px no-repeat;
+}
+
+li.delete a {
+	height: 17px;
+	width: 22px;
+	background: url('../images/icons/delete.png') no-repeat center top;
+}
+
+li.delete a:hover {
+	background: url('../images/icons/delete.png') 50% -19px no-repeat;
+}
+
+li.view a {
+	height: 17px;
+	width: 22px;
+	background: url('../images/icons/view.png') no-repeat center top;
+}
+
+li.view a:hover {
+	background: url('../images/icons/view.png') 50% -19px no-repeat;
+}
+
+li.edit a {
+	height: 17px;
+	width: 22px;
+	background: url('../images/icons/edit.png') no-repeat center top;
+}
+
+li.edit a:hover {
+	background: url('../images/icons/edit.png') 50% -19px no-repeat;
+}

@@ -1,0 +1,26 @@
+--- calendar-setup.js	2005-03-07 18:06:46.000000000 +0100
++++ ../TM/calendar-setup.js	2005-10-25 17:09:49.000000000 +0200
+@@ -144,6 +144,14 @@
+ 		if (params.inputField && typeof params.inputField.value == "string") {
+ 			cal.parseDate(params.inputField.value);
+ 		}
++		if (params.multiple) {
++			cal.multiple = {};
++			for (var i = params.multiple.length; --i >= 0;) {
++				var d = params.multiple[i];
++				var ds = d.print("%Y%m%d");
++				cal.multiple[ds] = d;
++			}
++		}
+ 		cal.create(params.flat);
+ 		cal.show();
+ 		return false;
+@@ -155,7 +163,7 @@
+ 		var dateFmt = params.inputField ? params.ifFormat : params.daFormat;
+ 		var mustCreate = false;
+ 		var cal = window.calendar;
+-		if (dateEl)
++		if (dateEl && ! params.multiple)
+ 			params.date = Date.parseDate(dateEl.value || dateEl.innerHTML, dateFmt);
+ 		if (!(cal && params.cache)) {
+ 			window.calendar = cal = new Calendar(params.firstDay,

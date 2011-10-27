@@ -1,0 +1,15 @@
+--- calendar.js-orig	2005-10-24 17:46:27.000000000 +0200
++++ calendar.js	2005-10-25 15:38:44.000000000 +0200
+@@ -592,8 +592,11 @@
+ 		cal.date.setDateOnly(el.caldate);
+ 		date = cal.date;
+ 		var other_month = !(cal.dateClicked = !el.otherMonth);
+-		if (!other_month && !cal.currentDateEl)
++		if (!other_month && !cal.currentDateEl) {
+ 			cal._toggleMultipleDate(new Date(date));
++			if ( cal.params.flat )
++				newdate = !el.disabled;
++		}
+ 		else
+ 			newdate = !el.disabled;
+ 		// a date was clicked

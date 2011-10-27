@@ -1,0 +1,114 @@
+/*
+ * Mysql Ajax Table Editor
+ *
+ * Copyright (c) 2008 Chris Kitchen <info@mysqlajaxtableeditor.com>
+ * All rights reserved.
+ *
+ * See COPYING file for license information.
+ *
+ * Download the latest version from
+ * http://www.mysqlajaxtableeditor.com
+ */
+.orderColumnClass {
+	border: 1px solid #333;
+	padding: 2px;
+	list-style: none;
+	margin: 2px auto;
+	cursor: move;
+	line-height: 100%;
+	width: 400px;
+}
+
+#ajaxLoader1 {
+	position: absolute;
+	left: 10px;
+	top: 0px;
+	display: none;
+}
+
+table.mateTable {
+	border: 1px solid #ccc;
+	color: #494949;
+}
+
+table.mateTable tr.header {
+	background: url('../images/table_bg.gif') top left repeat-x;
+	height: 24px;
+	font-weight: bold;
+}
+
+table.mateTable tr.header a {
+	font-weight: bold;
+	color: #003A73;
+}
+
+table.mateTable tr.header td {
+	white-space: nowrap;
+}
+
+table.mateTable td {
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-align: left;
+}
+
+table.mateTable td.labelCell {
+	font-weight: bold;
+	text-align: right;
+}
+
+.ajaxButton {
+	margin: 3px;
+}
+
+
+a.resetDate img{
+	padding: 1px;
+	margin: 0 3px 0 3px;
+	border: 1px solid red;
+}
+
+a.resetDate:hover img{
+	border: 2px solid red;
+	padding: 0px;
+}
+
+/* Pagination CSS
+
+---------------------------------------- */
+
+.selPage a{
+    padding: 0 2px;
+    margin: 0 2px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #bfbfbf;
+    border: 1px solid #bfbfbf;
+    font-size: 0.8em;
+    text-decoration: none;
+}
+
+
+
+.navPage a, .navPage a:link, .navPage a:visited, .navPage a:active {
+    font-weight: normal;
+    text-decoration: none;
+    color: #747474;
+    margin: 0 2px;
+    padding: 0 2px;
+    background-color: #eeeeee;
+    border: 1px solid #bababa;
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
+
+
+.navPage a:hover {
+    border-color: #d2d2d2;
+    background-color: #d2d2d2;
+    color: #FFF;
+    text-decoration: none;
+}
+
+
