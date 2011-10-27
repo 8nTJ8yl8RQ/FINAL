@@ -17,10 +17,10 @@ function GetSearch($inSurname=NULL, $inFirstname=NULL, $inCity=NULL, $inSport=NU
 		//$query = mysql_query("SELECT a.Surname, a.FirstName, a.MiddleInitial, s.Sport,
 		//                     s.SquadKind, t.TeamName, st.StatusKind, g.FirstName, g.Surname, ad.  //FROM ORDER BY id DESC"); 
 		
-		$query = mysql_query("SELECT * FROM athlete UNION 
-		                      SELECT * FROM guardian UNION
-							  SELECT * FROM at_address UNION
-							  SELECT * FROM   ORDER BY athlete.Surname DESC");
+		$query = mysql_query("SELECT * FROM Athlete UNION 
+		                      SELECT * FROM Guardian UNION
+							  SELECT * FROM At_Address UNION
+							  SELECT * FROM   ORDER BY Athlete.Surname DESC");
 }
 ?>
 </body>

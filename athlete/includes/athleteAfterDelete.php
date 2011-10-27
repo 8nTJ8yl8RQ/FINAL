@@ -7,9 +7,9 @@
 <body>
 <?php
 $db = mysql_connect("localhost", "root", "n4UVFpHeHr");
-mysql_select_db("bulilit2",$db);
+mysql_select_db("bulilit",$db);
 
-$result = mysql_query("SELECT * FROM athlete order by Surname",$db);
+$result = mysql_query("SELECT * FROM Athlete order by Surname",$db);
 ?>
 </body>
 </html>
