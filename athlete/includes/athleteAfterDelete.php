@@ -7,7 +7,7 @@
 <body>
 <?php
 $db = mysql_connect("localhost", "root", "n4UVFpHeHr");
-mysql_select_db("bulilit",$db);
+mysql_select_db("bulilit2",$db);
 
 $result = mysql_query("SELECT * FROM athlete order by Surname",$db);
 ?>
