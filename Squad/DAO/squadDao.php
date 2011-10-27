@@ -48,24 +48,31 @@ MySQL &$db
 	}
 }
 // this function must be called with atleast  one argument that is not null
-function GetSquad($inId=null, $inSquadKind =null){
-	if (empty($inId) && empty($inSquadKind)) { 
+function GetSquad($inId=null, $inSquadKind =null,$teamId=null){
+	
+	if (empty($inId) && empty($inSquadKind) && empty($teamId)) { 
 		throw new Exception( 'Error : GetSquad() all arguments were null.');
 	}
 	$squadArray = array();
-	
-	if (!empty($this->mysquad)) {
-		if($inId === $this->mysquad->SquadID || $inSquadKind === $this->mysquad->SquadKind){
-			return $this->data;
-		}
-	}
-	$sql_stmt  ="";
+
+//	if (!empty($this->mysquad)) {
+//		if($inId === $this->mysquad->SquadID || $inSquadKind === $this->mysquad->SquadKind){
+//			return $this->data;
+//		}
+//	}
+	$sql_stmt  ="defulat";
+
 	if (!empty($inId)) {	
 		$sql_stmt  = "SELECT * FROM Squad WHERE SquadID ='" . $inId . "'"; 
 	} else if (!empty($inSquadKind)) {
 		$sql_stmt = "SELECT * FROM Squad WHERE SquadKind = '" .$inSquadKind. "'"; 
 		
-	} 
+	} else if(!empty($teamId)) {
+	$sql_stmt = "SELECT * FROM Squad s where s.SquadID IN(SELECT distinct SquadID FROM TeamMemDetails T where T.TeamID='" . $teamId . "') ORDER BY s.SquadID DESC";
+	} else {
+	$sql_stmt = "SELECT * FROM Squad ORDER BY SquadID ASC";
+	}
+
 	
 	//$result = mysql_query($sql_stmt);	
 	$this->db->query($sql_stmt);
@@ -74,11 +81,14 @@ function GetSquad($inId=null, $inSquadKind =null){
 		$mySqd = new Squad($row['SquadID'], $row['SquadKind']);
 		array_push($squadArray, $mySqd);
 	}
-	
 	//mysql_free_result( $result );// not needed becuase result is few
 	return $squadArray;
 }
 
+function GetSquadByTeamID(){
+	
+	return $squadArray;
+}
 function GetAllSquad() {
 	$sql_stmt = "SELECT * FROM Squad ORDER BY SquadID ASC";
 	$result = mysql_query($sql_stmt);	
@@ -220,5 +230,7 @@ function EditSquad($inSquadId=null, $inSquadKind=null){
 }
 
 }
+
+
 
 ?>

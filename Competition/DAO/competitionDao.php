@@ -1,5 +1,6 @@
 <?php
 ini_set('display_errors', 'On');
+
 include 'Model/competition.php';
 require_once('../Coach/Model/coach.php');
 require_once('../Coach/DAO/coachDao.php');
@@ -10,17 +11,22 @@ mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were
 
 function GetCompetition($inId=null)
 {
+$test = "%%%%%%%%%%%%%%%%%%%%%%%%%5";	
+
 	if (!empty($inId))
 	{
 		$query = mysql_query("SELECT * FROM bulilit.TeamCompetitionHistory T WHERE T.CompetitionID = '" . $inId . "' ORDER BY T.CompetitionID DESC"); 
 	} else {
-		$query = mysql_query("SELECT * FROM bulilit.TeamCompetitionHistory T ORDER BY T.CompetitionID ASC");
+
+		$query = mysql_query("SELECT * FROM bulilit.TeamCompetitionHistory T ORDER BY T.CompetitionID ASC") or die ("==+++++++");
+var_dump($query);
 	}
 	$competitionArray = array();
 	while ($row = mysql_fetch_assoc($query))
 	{
 		$myCompetition = new Competition($row["CompetitionID"], $row['CompName'], $row['Date'], $row['Time'], $row['Venue'], $row['TeamID']);
-		array_push($competitionArray, $myCompetition);
+		
+array_push($competitionArray, $myCompetition);
 		}
 	return $competitionArray;
 	}

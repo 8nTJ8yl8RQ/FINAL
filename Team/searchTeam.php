@@ -10,12 +10,14 @@
 <body>
 <?php 
 ini_set('display_errors','On');
+	
 error_reporting(E_ALL);
 
 require_once 'DAO/teamDao.php';
 
 require_once '../User/include/session.php';
 require_once '../includes/menu.php';
+
 ?>
 
 <!--Start insert-->
@@ -65,6 +67,7 @@ if (!$session->logged_in){
 		}
 	}
 	else {
+
 ?>
 <div class="searchTeam">
 	<form action="searchTeam.php" method="post">
@@ -87,7 +90,7 @@ if (!$session->logged_in){
 	</tr>
 	<?php
 	
-	
+
 		$teamId = $_POST["teamId"];
 		$teamName = $_POST["teamName"];
 		$teamCoach = $_POST["teamCoach"];	
@@ -103,11 +106,13 @@ if (!$session->logged_in){
 		foreach ($deleteTeams as $deleteTeam){
 				DeleteTeam($deleteTeam);
 			}
+
 		if ($teamId != null){
 			$teams = GetTeam($teamId,null,null);
 			}
 		else if (($teamName == null) && ($teamCoach ==null)){
 			$teams = GetTeam();
+
 			}
 		else if (($teamName != null) && ($teamCoach !=null)){
 			$teams = GetTeam(null,$teamName, $teamCoach);
@@ -119,6 +124,7 @@ if (!$session->logged_in){
 			$teams = GetTeam(null,$teamName,null);
 			} 
 		else {
+
 			$teams = GetTeam();
 			}
 				$counter = 0;
@@ -143,7 +149,7 @@ if (!$session->logged_in){
 					$squadIdList = "";
 					$squadIds = $team->squadId;
 					foreach($squadIds as $squadId){
-						$squadIdList .= $squadId->squadKind . "<br />";
+						$squadIdList .= $squadId->SquadKind . "<br />";
 					}
 					?>
 						<?php echo '<td class="small"><input type="radio" value="'.$id.'" name="editTeamId">' ?>

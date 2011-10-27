@@ -44,6 +44,7 @@ public function query($query){
 			throw new Exception('Error performing query ' . $query . ' Error message :' .mysql_error($this->link), 2);
 		}
 	}
+	return $this->result;
 }
 
 public function get_result() {

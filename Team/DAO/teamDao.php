@@ -10,16 +10,25 @@ chdir($work_dir_was);
 chdir("../Squad");
 require_once 'Model/squad.php';
 require_once 'DAO/squadDao.php';
+include_once "Model/mysqlConfig.php";
 chdir($work_dir_was); 
 
 
+$s;
 // Change this info so that it works with your system.
-$connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
-$database = "bulilit";
-mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were unable to connect to the database.</p>");
+//$connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
+//var_dump($connection);
+//$database = "bulilit";
+//mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were unable to connect to the database.</p>");
+	
 
 function GetTeam($inId=null, $inTeamName =null, $inCoachName=null, $inSquadId=null)
 {
+$sq = new Squad (null, null); 
+$db = new MySQL("localhost","root" ,"n4UVFpHeHr" , "bulilit");
+$db->connect();
+$s = new SquadDao($db, $sq);
+
 	if (!empty($inId))
 	{
 		$query = mysql_query("SELECT * FROM Team T WHERE T.TeamID=" . $inId . " ORDER BY T.TeamID DESC") or die ("Error retrieving team with team id" . $inId); 
@@ -33,17 +42,21 @@ function GetTeam($inId=null, $inTeamName =null, $inCoachName=null, $inSquadId=nu
 		$query = mysql_query("SELECT * FROM Team T where T.TeamID in(SELECT TC.TeamID FROM TeamCoach TC where TC.CoachID in (SELECT C.CoachID FROM Coach C where C.Name like '%". $inCoachName ."%'))  ORDER BY T.TeamID"); 
 	}
 	else {
-		$query = mysql_query("SELECT * FROM Team T ORDER BY T.TeamName ASC");
+		//$query = mysql_query("SELECT * FROM Team T ORDER BY T.TeamName ASC") or die ("asdfa123123123");
+		$query = $db->query("SELECT * FROM Team T ORDER BY T.TeamName ASC");
 		}
+//var_dump($query);
 	$teamArray = array();
 	while ($row = mysql_fetch_assoc($query))
 	{
+//var_dump($row);
 		$teamId = $row["TeamID"];
 		$myCoachArray = GetCoach(null,null,null,$teamId);
-		$mySquadArray = GetSquad(null,null,$teamId);
+		$mySquadArray = $s->GetSquad(null,null,$teamId);
 		$myTeam = new Team($row["TeamID"], $row['TeamName'], $row['SportID'] , $myCoachArray, $mySquadArray);
 		array_push($teamArray, $myTeam);
 		}
+	
 	return $teamArray;
 	
 	}

@@ -24,7 +24,13 @@
 		<ul>
 			<li class="active"><a href="../User/main.php">Main</a></li>
 			<?php 		
-			
+
+require_once('DAO/competitionDao.php');
+require_once('../Team/DAO/teamDao.php');
+require_once('../Team/Model/team.php');
+require_once('../User/include/session.php');
+require_once("../includes/menu.php");	
+
 			if ($session->logged_in){
 					if ($session->isAdmin()){
 						DisplayAdminMenu();
@@ -48,11 +54,8 @@
       
       
 <?php 
-require_once('DAO/competitionDao.php');
-require_once('../Team/DAO/teamDao.php');
-require_once('../Team/Model/team.php');
-require_once('../User/include/session.php');
-require_once("../includes/menu.php");
+
+
 if (!$session->logged_in){
 		header("Location: http://localhost/User/main.php");
 	} else if (!$session->isAdmin()){
@@ -62,6 +65,7 @@ if (!$session->logged_in){
 		}
 	}
 	else {
+
 ?>
 <div class="searchCompetition">
 	<form action="searchCompetition.php" method="post">
@@ -84,11 +88,13 @@ if (!$session->logged_in){
 	<th><font face="Arial, Helvetica, sans-serif">Team</font></th>
 	</tr>
 	<?php
+
 		$competitionId = $_POST["competitionId"];
 		$competitionName = $_POST["competitionName"];
 		$competitionCoach = $_POST["competitionCoach"];	
 		$deleteCompetitions = $_POST["deleteCompetitionId"];
 		$requestType = $_REQUEST["submit"];
+
 		if ($requestType == "Edit") {
 			header("Location: http://localhost/competition/makeCompetition.php?competitionId=". $_POST["editCompetitionId"] .""); /* Redirect browser */
 			exit();
@@ -96,15 +102,20 @@ if (!$session->logged_in){
 			header("Location: http://localhost/competition/makeCompetition.php"); /* Redirect browser */
 			exit();
 			}
+
 		foreach ($deleteCompetitions as $deleteCompetition){
 				DeleteCompetition($deleteCompetition);
 			}
+			$test = "---------------------";	
+var_dump($test);
 		if ($competitionId != null){
+	
 			$competitions = GetCompetition($competitionId,null,null);
 			}
 		else {
 			$competitions = GetCompetition();
 			}
+
 				$counter = 0;
 				foreach($competitions as $competition){
 					$id = $competition->id;
