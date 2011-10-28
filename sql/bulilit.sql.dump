@@ -95,14 +95,14 @@ CREATE TABLE `Athlete` (
   `MiddleInitial` varchar(40) NOT NULL,
   `Gender` varchar(10) NOT NULL,
   `TelNumber` varchar(15) NOT NULL,
-  `E-mail` varchar(40) NOT NULL,
+  `Email` varchar(40) NOT NULL,
   PRIMARY KEY (`MembershipID`),
   KEY `GID` (`GID`),
   KEY `AddressID` (`AddressID`),
   KEY `RelID` (`RelID`),
-  CONSTRAINT `Athlete_ibfk_3` FOREIGN KEY (`AddressID`) REFERENCES `At_Address` (`AddressID`),
   CONSTRAINT `Athlete_ibfk_1` FOREIGN KEY (`RelID`) REFERENCES `AtRelToGuard` (`RelID`),
-  CONSTRAINT `Athlete_ibfk_2` FOREIGN KEY (`GID`) REFERENCES `Guardian` (`GID`)
+  CONSTRAINT `Athlete_ibfk_2` FOREIGN KEY (`GID`) REFERENCES `Guardian` (`GID`),
+  CONSTRAINT `Athlete_ibfk_3` FOREIGN KEY (`AddressID`) REFERENCES `At_Address` (`AddressID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -166,7 +166,7 @@ CREATE TABLE `AthleteStatus` (
   CONSTRAINT `AthleteStatus_ibfk_3` FOREIGN KEY (`StatusID`) REFERENCES `Status` (`StatusID`),
   CONSTRAINT `AthleteStatus_ibfk_1` FOREIGN KEY (`MembershipID`) REFERENCES `Athlete` (`MembershipID`),
   CONSTRAINT `AthleteStatus_ibfk_2` FOREIGN KEY (`CoachID`) REFERENCES `Coach` (`CoachID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,6 +175,7 @@ CREATE TABLE `AthleteStatus` (
 
 LOCK TABLES `AthleteStatus` WRITE;
 /*!40000 ALTER TABLE `AthleteStatus` DISABLE KEYS */;
+INSERT INTO `AthleteStatus` VALUES (3,1,1),(4,1,2),(2,2,2),(1,3,1),(5,4,1);
 /*!40000 ALTER TABLE `AthleteStatus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +217,7 @@ CREATE TABLE `CoachContactDetails` (
   `Address` varchar(80) DEFAULT NULL,
   `TelNo` varchar(15) DEFAULT NULL,
   `MobileNo` varchar(15) DEFAULT NULL,
-  `E-mail` varchar(40) DEFAULT NULL,
+  `Email` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`ContactID`),
   KEY `CoachID` (`CoachID`),
   CONSTRAINT `CoachContactDetails_ibfk_1` FOREIGN KEY (`CoachID`) REFERENCES `Coach` (`CoachID`)
@@ -301,7 +302,7 @@ CREATE TABLE `Guardian` (
   `FirstName` varchar(40) NOT NULL,
   `Surname` varchar(40) NOT NULL,
   `TelNumber` varchar(20) NOT NULL,
-  `E-Mail` varchar(40) NOT NULL,
+  `EMail` varchar(40) NOT NULL,
   PRIMARY KEY (`GID`),
   KEY `AddressID` (`AddressID`),
   CONSTRAINT `Guardian_ibfk_1` FOREIGN KEY (`AddressID`) REFERENCES `At_Address` (`AddressID`)
@@ -461,7 +462,8 @@ DROP TABLE IF EXISTS `Squad`;
 CREATE TABLE `Squad` (
   `SquadID` int(11) NOT NULL AUTO_INCREMENT,
   `SquadKind` varchar(20) NOT NULL,
-  PRIMARY KEY (`SquadID`)
+  PRIMARY KEY (`SquadID`),
+  CONSTRAINT `Squad_ibfk_1` FOREIGN KEY (`SquadID`) REFERENCES `Squad` (`SquadID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -537,10 +539,12 @@ CREATE TABLE `Team` (
   `TeamID` int(11) NOT NULL AUTO_INCREMENT,
   `SportID` int(11) NOT NULL,
   `TeamName` varchar(40) NOT NULL,
+  `SquadID` int(11) NOT NULL,
   PRIMARY KEY (`TeamID`),
   KEY `SportID` (`SportID`),
+  KEY `SquadID` (`SquadID`),
   CONSTRAINT `Team_ibfk_1` FOREIGN KEY (`SportID`) REFERENCES `Sport` (`SportID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -549,7 +553,7 @@ CREATE TABLE `Team` (
 
 LOCK TABLES `Team` WRITE;
 /*!40000 ALTER TABLE `Team` DISABLE KEYS */;
-INSERT INTO `Team` VALUES (1,1,'Team 1'),(3,1,'Team 2'),(4,1,'Team 3'),(5,1,'Team C'),(6,1,'Team A'),(7,1,'Team B');
+INSERT INTO `Team` VALUES (1,1,'Team 1',1),(3,1,'Team 2',1),(4,1,'Team 3',2),(5,1,'Team C',1),(6,1,'Team A',1),(7,1,'Team B',2);
 /*!40000 ALTER TABLE `Team` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -598,7 +602,7 @@ CREATE TABLE `TeamCompetitionHistory` (
   PRIMARY KEY (`CompetitionID`),
   KEY `TeamID` (`TeamID`),
   CONSTRAINT `TeamCompetitionHistory_ibfk_1` FOREIGN KEY (`TeamID`) REFERENCES `Team` (`TeamID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -607,6 +611,7 @@ CREATE TABLE `TeamCompetitionHistory` (
 
 LOCK TABLES `TeamCompetitionHistory` WRITE;
 /*!40000 ALTER TABLE `TeamCompetitionHistory` DISABLE KEYS */;
+INSERT INTO `TeamCompetitionHistory` VALUES (1,1,'asdf','2011-03-03','03:00:00','asdfasdf'),(2,1,'asdf','2011-03-03','03:00:00','asdfasdf');
 /*!40000 ALTER TABLE `TeamCompetitionHistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -704,4 +709,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-10-14  0:58:35
+-- Dump completed on 2011-10-27 20:58:28
