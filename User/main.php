@@ -1,6 +1,4 @@
 <?php
-	ini_set('display_errors','On');
-	error_reporting(E_ALL);
 	require_once("include/session.php");
 	require_once("../includes/menu.php");
 ?>

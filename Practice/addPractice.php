@@ -20,7 +20,7 @@ if (!$session->logged_in){
 	}
 	else {
 
-//ini_set('display_errors', 'On');?>
+?>
 <link href="../style.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="../scripts/selectbox.js"></script>
 	<script type="text/javascript" src="../scripts/jquery/jquery-1.6.4.js"></script>

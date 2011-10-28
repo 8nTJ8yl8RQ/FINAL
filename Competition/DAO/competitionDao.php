@@ -1,5 +1,4 @@
 <?php
-ini_set('display_errors', 'On');
 
 include 'Model/competition.php';
 require_once('../Coach/Model/coach.php');
@@ -11,7 +10,6 @@ mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were
 
 function GetCompetition($inId=null)
 {
-$test = "%%%%%%%%%%%%%%%%%%%%%%%%%5";	
 
 	if (!empty($inId))
 	{

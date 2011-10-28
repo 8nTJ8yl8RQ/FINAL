@@ -31,7 +31,6 @@ if (!$session->logged_in){
 		}
 	}
 	else {
-ini_set('display_errors', 'On');
 ?>
 
 

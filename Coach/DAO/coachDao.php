@@ -2,7 +2,6 @@
 
 include_once 'Model/coach.php';
 
-ini_set('display_errors', 'On');
 // Change this info so that it works with your system.
 $connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
 $database = "bulilit";
