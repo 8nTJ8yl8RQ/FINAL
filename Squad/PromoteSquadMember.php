@@ -7,12 +7,13 @@
 	require_once "../secure/dbconnect.php";
 	include_once "DAO/squadDao.php";
 	
- 	
+ 	$err_flag = FALSE;
+
 	$nav_admin_menu="";  
 	//session handling
 	require_once "../User/include/session.php";
 	if(!($session->logged_in)){
-		Location("header : ../User/main.php");
+		//Location("header : ../User/main.php");
 		exit();
 	} else {
 	
@@ -20,12 +21,12 @@
 			$nav_admin_menu="<a href='PromoteSquadMember.php'>Promote Squad Member</a>";
 		} 
 	 	else {
-		
-		Location("header : ../User/main.php");
-		
+			$err_flag = TRUE;
+		//Location("header : index.php");
+		//exit();
 		}
 	}
-	
+if(!$err_flag) {
 	//states : View, Start Promotion, Checking Done
 	//transitions: view-> edit, edit ->update, update->views,  or *->view * (default)
 	$form_opt_menu_open  ="";
@@ -253,7 +254,7 @@
 	} catch (Exception $e ) {
 		echo $e->getMessage();
 	}
-	
+}	
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -280,9 +281,11 @@
       <div class="menu_nav">
         <ul>
 	  <li ><a href="../User/main.php">Main</a></li>
-          <li><a href="squadMainPage.php">View Squad Members</a></li>
-          <li class="active"><?=$nav_admin_menu?></li>
-          <li><a href="ViewSquadTeams.php"> View Squad Teams</a></li>
+	  	
+	  <li><a href="squadMainPage.php">View Squad Members</a></li>
+		  	<li class="active"><?=$nav_admin_menu?></li>
+		  	<li><a href="ViewSquadTeams.php"> View Squad Teams</a></li>
+	  
 	  <li ><a href="../User/process.php">Log Out</a></li>
         </ul>
       </div>
