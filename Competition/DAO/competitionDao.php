@@ -17,7 +17,7 @@ function GetCompetition($inId=null)
 	} else {
 
 		$query = mysql_query("SELECT * FROM bulilit.TeamCompetitionHistory T ORDER BY T.CompetitionID ASC") or die ("==+++++++");
-var_dump($query);
+
 	}
 	$competitionArray = array();
 	while ($row = mysql_fetch_assoc($query))
@@ -65,7 +65,7 @@ function EditCompetitionMembers($inCompetitionId=null,$inMembershipId=null,$inCo
 function EditCompetition($inCompetitionId=null, $inTeamId=null, $inCompName=null, $inDate=null, $inTime=null, $inVenue=null, $inMembers=null, $inPoints=null, $inRolePositions=null)
 {
 		
-		var_dump($inRolePositions);
+	
 		$query = mysql_query("UPDATE bulilit.TeamCompetitionHistory T SET T.CompetitionID=".$inCompetitionId.", T.TeamID=".$inTeamId.", T.CompName='".$inCompName."', T.Date='".$inDate."', T.Time='".$inTime."', T.Venue='".$inVenue."' WHERE T.CompetitionID=".$inCompetitionId)  or die ("<p class='error'>Sorry, we were unable to update the competition to the database.</p>"); 
 		$headCoachId = GetCoach(null, null, null, $inTeamId=null);
 		if(isset($inPoints)){
@@ -76,7 +76,7 @@ function EditCompetition($inCompetitionId=null, $inTeamId=null, $inCompName=null
 		} else {
 		
 			for ($i=0;$i <= (count($inMembers)-1); $i++){
-			var_dump($inMembers[$i]);
+		
 				EditCompetitionMembers($inCompetitionId,$inMembers[$i],$headCoachId[0]->id,0,$inRolePositions[$i]);
 			}
 		}

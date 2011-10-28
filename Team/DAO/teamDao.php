@@ -17,7 +17,7 @@ chdir($work_dir_was);
 $s;
 // Change this info so that it works with your system.
 //$connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
-//var_dump($connection);
+
 //$database = "bulilit";
 //mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were unable to connect to the database.</p>");
 	
@@ -45,11 +45,11 @@ $s = new SquadDao($db, $sq);
 		//$query = mysql_query("SELECT * FROM Team T ORDER BY T.TeamName ASC") or die ("asdfa123123123");
 		$query = $db->query("SELECT * FROM Team T ORDER BY T.TeamName ASC");
 		}
-//var_dump($query);
+
 	$teamArray = array();
 	while ($row = mysql_fetch_assoc($query))
 	{
-//var_dump($row);
+
 		$teamId = $row["TeamID"];
 		$myCoachArray = GetCoach(null,null,null,$teamId);
 		$mySquadArray = $s->GetSquad(null,null,$teamId);
@@ -68,7 +68,7 @@ $connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class
 $database = "bulilit";
 mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were unable to connect to the database.</p>");
 		$querystring= "INSERT INTO Team(SportID,TeamName) VALUES(".$inSportId.",'".$inTeamName."')";
-		var_dump($querystring);
+	
 		$query = mysql_query($querystring) or die ("Error in Team Creation");
 		$teamId = mysql_insert_id();
 		AddTeamHeadCoach($teamId, $inCoachId);

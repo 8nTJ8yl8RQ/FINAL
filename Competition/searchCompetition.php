@@ -106,8 +106,7 @@ if (!$session->logged_in){
 		foreach ($deleteCompetitions as $deleteCompetition){
 				DeleteCompetition($deleteCompetition);
 			}
-			$test = "---------------------";	
-var_dump($test);
+			
 		if ($competitionId != null){
 	
 			$competitions = GetCompetition($competitionId,null,null);
