@@ -97,10 +97,10 @@ if (!$session->logged_in){
 		$deleteTeams = $_POST["deleteTeamId"];
 		$requestType = $_REQUEST["submit"];
 		if ($requestType == "Edit") {
-			header("Location: http://localhost/team/addTeam.php?teamId=". $_POST["editTeamId"] .""); /* Redirect browser */
+			header("Location: addTeam.php?teamId=". $_POST["editTeamId"] .""); /* Redirect browser */
 			exit();
 		} else if ($requestType == "Add") {
-			header("Location: http://localhost/team/addTeam.php"); /* Redirect browser */
+			header("Location: addTeam.php"); /* Redirect browser */
 			exit();
 			}
 		foreach ($deleteTeams as $deleteTeam){

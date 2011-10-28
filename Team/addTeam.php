@@ -56,7 +56,7 @@ if (!$session->logged_in){
 		}
 	}
 	else{
-		if (isset($_POST["teamId"])) {
+		if ($_POST["teamId"] != null && $_POST["teamId"] != "") {
 			EditTeam($_POST["teamId"],$_POST["sport"],$_POST["teamName"],$_POST["coach"],$_POST["subCoaches"]);
 			echo 'You have successfully edited '. $_POST["teamName"] .' with team id '. $_POST["teamId"] .'!';
 			echo '<br />';
@@ -65,8 +65,13 @@ if (!$session->logged_in){
 			echo 'You have successfully added '. $_POST["teamName"] .'!';
 			echo '<br />';
 		} else {
-			$teamId = $_GET["teamId"];
+			$teamId = "2";
 			
+			if (isset($_GET["teamId"])){
+				$teamId = $_GET["teamId"];
+			} else {
+				$teamId = null;
+			}
 			$teams = GetTeam($teamId);
 			foreach($teams as $team){
 				$teamName = $team->teamName;
@@ -99,7 +104,10 @@ if (!$session->logged_in){
 					} else {
 						DisplayGuestMenu();
 					}
-				}?>
+				}
+
+
+?>
 		</ul>
 		</div>
       <div class="clr"></div>
@@ -112,7 +120,7 @@ if (!$session->logged_in){
       
 	<div class="addTeamForm">
 	<form action="addTeam.php" method="post">
-		<input type="hidden" name="teamId" value="<?=$teamId?>"/>
+		<?php echo '<input type="hidden" name="teamId" value="'.$teamId.'">'; ?>
 		Team Name: <input type="text" name="teamName" value="<?=$teamName?>"/><br>
 		Sport: <input type="text" name="sport" value="<?=$sport?>"/><br>
 		Select a Head Coach:<br />

@@ -31,15 +31,15 @@ $s = new SquadDao($db, $sq);
 
 	if (!empty($inId))
 	{
-		$query = mysql_query("SELECT * FROM Team T WHERE T.TeamID=" . $inId . " ORDER BY T.TeamID DESC") or die ("Error retrieving team with team id" . $inId); 
+		$query = $db->query("SELECT * FROM Team T WHERE T.TeamID=" . $inId . " ORDER BY T.TeamID DESC") or die ("Error retrieving team with team id" . $inId); 
 	} 
 	else if (!empty($inTeamName))
 	{
-		$query = mysql_query("SELECT * FROM Team T WHERE T.TeamName like '%" .$inTeamName. "%' ORDER BY T.TeamID ASC"); 
+		$query = $db->query("SELECT * FROM Team T WHERE T.TeamName like '%" .$inTeamName. "%' ORDER BY T.TeamID ASC"); 
 	} 
 	else if (!empty($inCoachName))
 	{
-		$query = mysql_query("SELECT * FROM Team T where T.TeamID in(SELECT TC.TeamID FROM TeamCoach TC where TC.CoachID in (SELECT C.CoachID FROM Coach C where C.Name like '%". $inCoachName ."%'))  ORDER BY T.TeamID"); 
+		$query = $db->query("SELECT * FROM Team T where T.TeamID in(SELECT TC.TeamID FROM TeamCoach TC where TC.CoachID in (SELECT C.CoachID FROM Coach C where C.Name like '%". $inCoachName ."%'))  ORDER BY T.TeamID"); 
 	}
 	else {
 		//$query = mysql_query("SELECT * FROM Team T ORDER BY T.TeamName ASC") or die ("asdfa123123123");
@@ -63,7 +63,13 @@ $s = new SquadDao($db, $sq);
 	
 function AddTeam($inSportId=null, $inTeamName =null, $inCoachId=null, $inSubCoachIds=null)
 {
-		$query = mysql_query("INSERT INTO Team(SportID,TeamName) VALUES(".$inSportId.",'".$inTeamName."')") or die ("Error in Team Creation");
+
+$connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
+$database = "bulilit";
+mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were unable to connect to the database.</p>");
+		$querystring= "INSERT INTO Team(SportID,TeamName) VALUES(".$inSportId.",'".$inTeamName."')";
+		var_dump($querystring);
+		$query = mysql_query($querystring) or die ("Error in Team Creation");
 		$teamId = mysql_insert_id();
 		AddTeamHeadCoach($teamId, $inCoachId);
 		AddTeamSubCoaches($inTeamId, $inSubCoachIds);
@@ -71,11 +77,15 @@ function AddTeam($inSportId=null, $inTeamName =null, $inCoachId=null, $inSubCoac
 
 function AddTeamHeadCoach($inTeamId=null, $inCoachId=null)
 {
-	$query = mysql_query("INSERT INTO TeamCoach(TeamID,CoachID,HeadCoach) VALUES(".$inTeamId.",".$inCoachId.",'Yes')") or die ("Error in adding Head Coach");
+$db = new MySQL("localhost","root" ,"n4UVFpHeHr" , "bulilit");
+$db->connect();
+	$query = $db->query("INSERT INTO TeamCoach(TeamID,CoachID,HeadCoach) VALUES(".$inTeamId.",".$inCoachId.",'Yes')") or die ("Error in adding Head Coach");
 }
 
 function AddTeamSubCoaches($inTeamId=null, $inSubCoachIds=null)
 {
+$db = new MySQL("localhost","root" ,"n4UVFpHeHr" , "bulilit");
+$db->connect();
 	foreach($inSubCoachIds as $s){
 		$query = mysql_query("INSERT INTO TeamCoach(TeamID,CoachID,HeadCoach) VALUES(".$inTeamId.",".$s.",'No')") or die ("Error in adding sub coaches");
 	}
@@ -83,12 +93,16 @@ function AddTeamSubCoaches($inTeamId=null, $inSubCoachIds=null)
 
 function DeleteTeam($inTeamId=null)
 {
-		$query = mysql_query("DELETE FROM TeamCoach where TeamID=".$inTeamId."") or die ("Error deleting team");
-		$query = mysql_query("DELETE from Team WHERE TeamID=".$inTeamId."") or die ("Error deleting team"); 
+$db = new MySQL("localhost","root" ,"n4UVFpHeHr" , "bulilit");
+$db->connect();
+		$query = $db->query("DELETE FROM TeamCoach where TeamID=".$inTeamId."") or die ("Error deleting team");
+		$query = $db->query("DELETE from Team WHERE TeamID=".$inTeamId."") or die ("Error deleting team"); 
 	}
 
 function EditTeam($inTeamId, $inSportId=null, $inTeamName =null, $inCoachId=null, $inSubCoachIds=null)
 {
+$db = new MySQL("localhost","root" ,"n4UVFpHeHr" , "bulilit");
+$db->connect();
 		$teams = GetTeam($inTeamId);
 		$coaches;
 		foreach($teams as $team){
@@ -97,17 +111,17 @@ function EditTeam($inTeamId, $inSportId=null, $inTeamName =null, $inCoachId=null
 		if($coaches == null){
 			AddTeamHeadCoach($inTeamId, $inCoachId);
 		} else {
-			$query = mysql_query("UPDATE TeamCoach SET HeadCoach='Yes' WHERE TeamID=".$inTeamId." and CoachID=".$inCoachId."") or die ("Error updating team Head Coach");
+			$query = $db->query("UPDATE TeamCoach SET HeadCoach='Yes' WHERE TeamID=".$inTeamId." and CoachID=".$inCoachId."") or die ("Error updating team Head Coach");
 		}
 		
 		if($coaches == null){
 			AddTeamSubCoaches($inTeamId, $inSubCoachIds);
 		} else {
 			foreach($inSubCoachIds as $s){
-				$query = mysql_query("UPDATE TeamCoach SET HeadCoach='No' WHERE TeamID=".$inTeamId." and CoachID=".$s."") or die ("Error updating team Assistant Coaches");
+				$query = $db->query("UPDATE TeamCoach SET HeadCoach='No' WHERE TeamID=".$inTeamId." and CoachID=".$s."") or die ("Error updating team Assistant Coaches");
 			}
 		}
 		
-		$query = mysql_query("UPDATE Team SET SportID=".$inSportId.", TeamName='". $inTeamName ."' WHERE TeamID=".$inTeamId) or die ("Error updating team name");
+		$query = $db->query("UPDATE Team SET SportID=".$inSportId.", TeamName='". $inTeamName ."' WHERE TeamID=".$inTeamId) or die ("Error updating team name");
 	}
 ?>
