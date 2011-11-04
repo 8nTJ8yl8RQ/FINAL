@@ -89,7 +89,7 @@
         <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>Gender: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="style3">-</span> &nbsp;&nbsp;&nbsp;</font>
           <input type="varchar" name="gender"/>
         </span></td>
-        <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>Birthday: yyyy-mm-dd</font><span class="style4">-----------
+        <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>Birthday: [yyyy-mm-dd]</font><span class="style4">-----------
             </span>
           <input type="varchar" name="birthday"/>
         </span></td>
@@ -140,7 +140,7 @@
           <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif">Status:</font><span class="style2">--------------- </span>
                 <input type="varchar" name="status" /-->
           </span></td>
-          <td bgcolor="#FFFFCC"><span class="style1"> Payment Date: yyyy-mm-dd </span><span class="style4">----------</span><span class="style1">
+          <td bgcolor="#FFFFCC"><span class="style1"> Payment Date:[yyyy-mm-dd] </span><span class="style4">----------</span><span class="style1">
             <input type="varchar" name="paymentdate" />
           </span></td>
         </tr>

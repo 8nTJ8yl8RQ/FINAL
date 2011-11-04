@@ -80,7 +80,7 @@
         <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>Gender: &nbsp;&nbsp;&nbsp;<span class="style4">&nbsp;&nbsp;-</span> <span class="style4">&nbsp;&nbsp;</span>&nbsp;</font>
           <input type="varchar" value="<?php echo "$gender"?>" name="gender"/>
         </span></td>
-        <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>Birthday:</font><span class="style4">-----------
+        <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>Birthday:[yyyy-mm-dd]</font><span class="style4">-----------
             </span>
           <input type="varchar" value="<?php echo "$birthday"?>" name="birthday"/>
         </span></td>
@@ -131,7 +131,7 @@
           <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif">Status:</font><span class="style4">--------------- </span>
                 <input type="varchar" value="<?php echo "$"?>" name="status" />
           </span></td-->
-          <td bgcolor="#FFFFCC"><span class="style1"> Payment Date: </span><span class="style4">----------</span><span class="style1">
+          <td bgcolor="#FFFFCC"><span class="style1"> Payment Date:[yyyy-mm-dd] </span><span class="style4">----------</span><span class="style1">
             <input type="varchar" value="<?php echo "$paymentdate"?>" name="paymentdate" />
           </span></td>
         </tr>
