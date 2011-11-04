@@ -6,7 +6,7 @@
 
 <body>
 <?php
-$db = mysql_connect("localhost", "root", "reyd");
+$db = mysql_connect("localhost", "root", "n4UVFpHeHr");
 mysql_select_db("bulilit",$db);
 
 $result = mysql_query("SELECT * FROM Athlete order by Surname",$db);
