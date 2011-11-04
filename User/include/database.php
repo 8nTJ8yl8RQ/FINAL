@@ -12,7 +12,7 @@ class MySQLDB
    
    function MySQLDB(){
      
-      $this->connection = mysql_connect("localhost", "root", "n4UVFpHeHr") or die(mysql_error());
+      $this->connection = mysql_connect("localhost", "root", "reyd") or die(mysql_error());
       mysql_select_db("dbtables", $this->connection) or die(mysql_error());
       
      $this->num_members = -1;

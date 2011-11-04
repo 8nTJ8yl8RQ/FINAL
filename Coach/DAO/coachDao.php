@@ -3,7 +3,7 @@
 include_once 'Model/coach.php';
 
 // Change this info so that it works with your system.
-$connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
+$connection = mysql_connect('localhost', 'root', 'reyd') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
 $database = "bulilit";
 mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were unable to connect to the database.</p>");
 
