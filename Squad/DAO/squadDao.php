@@ -198,14 +198,14 @@ function promoteSquadMems(&$memIds,$position){
 	$this->db->query($sql_stmt);
 
 	//delete from AthleteGrades
-	$sql_stmt="DELETE FROM AthleteGrades ag 
-                   WHERE ag.MembershipID in ($str_memIds)";
-	$this->db->query($sql_stmt);
+//	$sql_stmt="DELETE FROM AthleteGrades ag 
+//                   WHERE ag.MembershipID in ($str_memIds)";
+//	$this->db->query($sql_stmt);
 
 	//delete From TeamMembershipDetails
-	$sql_stmt="DELETE FROM TeamMemDetails tmd 
-                   WHERE tmd.MembershipID in ($str_memIds)";
-	$this->db->query($sql_stmt);
+//	$sql_stmt="DELETE FROM TeamMemDetails tmd 
+//                   WHERE tmd.MembershipID in ($str_memIds)";
+//	$this->db->query($sql_stmt);
 }
 
 function AddSquad($inSquadKind = null) {
