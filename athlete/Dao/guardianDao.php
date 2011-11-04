@@ -15,8 +15,8 @@ function guardianUpdate($inGID=NULL,$inAddressID=NULL, $ingFirstName=NULL, $ingS
                         $ingMiddlename=NULL,$ingTelNumber=NULL,$ingEmail=NULL) 
 {
 		$query=mysql_query("UPDATE Guardian SET
-							GID='".$inGID."',AddressID='".$inAddressID."',gFirstName='".$ingFirstName."',gSurname='".$ingSurname."',
-							gMiddleName='".$ingMiddlename."',TelNumber='".$ingTelNumber."',Email='".$ingEmail."'
+							GID='".$inGID."',AddressID='".$inAddressID."',FirstName='".$ingFirstName."',Surname='".$ingSurname."',
+							Middlename='".$ingMiddlename."',TelNumber='".$ingTelNumber."',Email='".$ingEmail."'
 							WHERE Guardian.GID='".$inGID."'");
 }
 

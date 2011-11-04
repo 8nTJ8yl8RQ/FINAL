@@ -5,11 +5,11 @@ class Guardian
 {
         public $GID;
 		public $AddressID;
-		public $gFirstName;
-		public $gSurname;
-		public $gMiddlename;
-		public $gTelNumber;
-		public $gEmail;
+		public $FirstName;
+		public $Surname;
+		public $Middlename;
+		public $TelNumber;
+		public $Email;
 		
         function __construct($inGID=NULL,$inAddressID=NULL, $ingFirstName=NULL, $ingSurname=NULL, $ingMiddlename=NULL,
 		                     $ingTelNumber=NULL, $ingEmail=NULL)
