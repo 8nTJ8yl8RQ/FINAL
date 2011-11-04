@@ -86,7 +86,7 @@ function GetTeamByCoachId($inCoachId=null){
 function AddTeam($inSportId=null, $inTeamName =null, $inCoachId=null, $inSubCoachIds=null)
 {
 
-		$connection = mysql_connect('localhost', 'root', '') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
+		$connection = mysql_connect('localhost', 'root', 'n4UVFpHeHr') or die ("<p class='error'>Sorry, we were unable to connect to the database server.</p>");
 		$database = "bulilit";
 		mysql_select_db($database, $connection) or die ("<p class='error'>Sorry, we were unable to connect to the database.</p>");
 		$querystring= "INSERT INTO Team(SportID,TeamName) VALUES(".$inSportId.",'".$inTeamName."')";
