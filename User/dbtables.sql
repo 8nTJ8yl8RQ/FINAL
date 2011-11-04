@@ -17,7 +17,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 --
 -- Database: `dbtables`
---
+-- 
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `dbtables` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `dbtables`;
 
 -- --------------------------------------------------------
 

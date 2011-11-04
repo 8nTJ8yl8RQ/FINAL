@@ -55,9 +55,9 @@ include_once 'Dao/athleteDao.php';
   if(!$_POST["surname"] || !$_POST["firstname"] || !$_POST["middlename"]  || !$_POST["gender"] 
           || !$_POST["birthday"]  || !$_POST["phonenumber"] || !$_POST["email"] ||!$_POST["barangay"] 
           ||!$_POST["street"]||!$_POST["city"]|| !$_POST["province"] || !$_POST["country"]|| !$_POST["zipcode"]
-          || !$_POST["team"]|| !$_POST["squad"]|| !$_POST["sport"]|| !$_POST["status"] || !$_POST["paymentdate"]
-          || !$_POST["glastname"]|| !$_POST["gfirstname"] || !$_POST["gmiddlename"]|| !$_REQUEST["kinship"]
+          || !$_POST["paymentdate"]|| !$_POST["glastname"]|| !$_POST["gfirstname"] || !$_POST["gmiddlename"]|| !$_REQUEST["kinship"]
           || !$_POST["gphonenumber"]|| !$_POST["gemail"])
+        // !$_POST["team"]|| !$_POST["squad"]|| !$_POST["sport"]|| !$_POST["status"] ||
       {
         
  	echo 'Please fill up required fields!.';
