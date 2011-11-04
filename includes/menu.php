@@ -2,6 +2,7 @@
 require_once("../User/include/session.php");
 
 //$athlete = "Athlete";
+//$arms = "ARMS";
 //$coach = "Coach";
 //$squad = "Squad";
 //$team = "Team";
@@ -15,7 +16,11 @@ function DisplayAdminMenu($inSender=null){
 		} else {
 			echo '<li><a href="../athlete/athleteView.php">Athlete</a></li>';
 		}
-		
+		if($inSender==="ARMS"){
+			echo '<li class="active"><a href="../phpMyEdit/index.php">ARMS</a></li>';
+		} else {
+			echo '<li><a href="../phpMyEdit/index.php">ARMS</a></li>';
+		}
 	if($inSender==="Coach"){
 			echo '<li class="active"><a href="../Coach/searchCoach.php">Coach</a></li>';
 		} else {

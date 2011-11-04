@@ -1,25 +1,66 @@
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 		"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Athlete</title>
+	<title>Bulilit Athletes</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<link href="css/table_styles.css" rel="stylesheet" type="text/css" />
+			<link href="css/icon_styles.css" rel="stylesheet" type="text/css" />
+			<link href="style.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="js/cufon-yui.js"></script>
+			<script type="text/javascript" src="js/arial.js"></script>
+			<script type="text/javascript" src="js/cuf_run.js"></script>
+			<script type="text/javascript" src="js/prototype.js"></script>
+			<script type="text/javascript" src="js/scriptaculous-js/scriptaculous.js"></script>
+			<script type="text/javascript" src="js/lang/lang_vars-en.js"></script>
+			<script type="text/javascript" src="js/ajax_table_editor.js"></script>
+			
+			<!-- calendar files -->
+			<link rel="stylesheet" type="text/css" media="all" href="js/jscalendar/skins/aqua/theme.css" title="win2k-cold-1" /> 
+			<script type="text/javascript" src="js/jscalendar/calendar.js"></script>
+			<script type="text/javascript" src="js/jscalendar/lang/calendar-en.js"></script>
+			<script type="text/javascript" src="js/jscalendar/calendar-setup.js"></script>
+
 <style type="text/css">
-	hr.pme-hr		     { border: 0px solid; padding: 0px; margin: 0px; border-top-width: 1px; height: 1px; }
-	table.pme-main 	     { border: #004d9c 1px solid; border-collapse: collapse; border-spacing: 0px; width: 100%; }
-	table.pme-navigation { border: #004d9c 0px solid; border-collapse: collapse; border-spacing: 0px; width: 100%; }
+			
+	hr.pme-hr		     { border: 1px solid; padding: 0px; margin: 0px; border-top-width: 1px; height: 1px; }
+	table.pme-main 	     { border: 1px solid #3A3B3B; border-collapse: collapse; border-spacing: 0px; width: 100%; }
+	table.pme-navigation { border: 1px solid #3A3B3B; border-collapse: collapse; border-spacing: 0px; width: 100%; }
 	td.pme-navigation-0, td.pme-navigation-1 { white-space: nowrap; }
-	th.pme-header	     { border: #004d9c 1px solid; padding: 4px; background: #add8e6; }
+	th.pme-header	     { border: 1px solid #ccc; padding: 4px; background: #fff; }
 	td.pme-key-0, td.pme-value-0, td.pme-help-0, td.pme-navigation-0, td.pme-cell-0,
 	td.pme-key-1, td.pme-value-1, td.pme-help-0, td.pme-navigation-1, td.pme-cell-1,
-	td.pme-sortinfo, td.pme-filter { border: #004d9c 1px solid; padding: 3px; }
+	td.pme-sortinfo, td.pme-filter { border: 1px solid #ccc; padding: 3px; }
 	td.pme-buttons { text-align: left;   }
 	td.pme-message { text-align: center; }
 	td.pme-stats   { text-align: right;  }
 </style>
 </head>
 <body>
-<h3>Athlete</h3>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+<!--      <div class="logo">
+        <h1><a href="#">Cream<span>Burn</span> <small>put your slogan here</small></a></h1>
+      </div> -->
+      <div class="clr"></div>
+      <div class="htext">
+      </div>
+      <div class="clr"></div>
+      <div class="menu_nav">
+        <ul>
+		 <li><a href="index.php">ARMS</a></li>
+         <li><a href="Sport1.php">Sport</a></li>
+         <li><a href="At_Address1.php">Address</a></li>
+         <li><a href="Guardian1.php">Guardian</a></li>
+         <li><a href="AtRelToGuard1.php">Relation</a></li>
+        </ul>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+	<h3 align=center>Athletes</h3> 
 <?php
 
 /*
@@ -37,6 +78,8 @@
  *            phpMyEditSetup.php script: 1.50
  *              generating setup script: 1.50
  */
+ 
+// require_once('AthleteFinal.php');
 
 // MySQL host name, user name, password, database, and table
 $opts['hn'] = 'localhost';
@@ -61,14 +104,14 @@ $opts['inc'] = 15;
 // Options you wish to give the users
 // A - add,  C - change, P - copy, V - view, D - delete,
 // F - filter, I - initial sort suppressed
-$opts['options'] = 'ACPVDF';
+$opts['options'] = 'ACVDF';
 
 // Number of lines to display on multiple selection filters
 $opts['multiple'] = '4';
 
 // Navigation style: B - buttons (default), T - text links, G - graphic links
 // Buttons position: U - up, D - down (default)
-$opts['navigation'] = 'DB';
+$opts['navigation'] = 'G';
 
 // Display special page elements
 $opts['display'] = array(
@@ -188,6 +231,12 @@ $opts['fdd']['FirstName'] = array(
   'maxlen'   => 40,
   'sort'     => true
 );
+$opts['fdd']['MiddleInitial'] = array(
+  'name'     => 'M I',
+  'select'   => 'T',
+  'maxlen'   => 40,
+  'sort'     => true
+);
 $opts['fdd']['Surname'] = array(
   'name'     => 'Surname',
   'select'   => 'T',
@@ -195,27 +244,23 @@ $opts['fdd']['Surname'] = array(
   'sort'     => true
 );
 $opts['fdd']['DateOfBirth'] = array(
-  'name'     => 'DateOfBirth',
-  'select'   => 'T',
+  'name'     => 'Birthday',
+  'select'   => 'D',
   'maxlen'   => 10,
   'sort'     => true
 );
 $opts['fdd']['PaymentDate'] = array(
   'name'     => 'PaymentDate',
-  'select'   => 'T',
+  'select'   => 'D',
   'maxlen'   => 10,
-  'sort'     => true
-);
-$opts['fdd']['MiddleInitial'] = array(
-  'name'     => 'MiddleInitial',
-  'select'   => 'T',
-  'maxlen'   => 40,
   'sort'     => true
 );
 $opts['fdd']['Gender'] = array(
   'name'     => 'Gender',
   'select'   => 'T',
   'maxlen'   => 10,
+   'values' => array(
+    'Male','Female'),
   'sort'     => true
 );
 $opts['fdd']['TelNumber'] = array(
@@ -224,8 +269,8 @@ $opts['fdd']['TelNumber'] = array(
   'maxlen'   => 15,
   'sort'     => true
 );
-$opts['fdd']['E-mail'] = array(
-  'name'     => 'E mail',
+$opts['fdd']['Email'] = array(
+  'name'     => 'Email',
   'select'   => 'T',
   'maxlen'   => 40,
   'sort'     => true
