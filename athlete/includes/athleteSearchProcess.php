@@ -22,7 +22,7 @@
 	 
     include'includes/DBconnect.php';
 	
-  @ $sql="SELECT * FROM athlete WHERE $searchtype LIKE '%".$searchterm."%'";
+  @ $sql="SELECT * FROM Athlete WHERE $searchtype LIKE '%".$searchterm."%'";
 
     // var_dump($sql); exit(1);
    @ $result=mysql_query($sql);
