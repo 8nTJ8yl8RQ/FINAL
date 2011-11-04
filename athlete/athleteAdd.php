@@ -125,7 +125,7 @@
         <tr bgcolor="#FFFFFF">
           <td><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>ZipCode:<span class="style4">--- </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
                 <input type="varchar" name="zipcode" />
-          </span></td>
+          <!--/span></td>
           <td><span class="style2"><span class="style7">Team:</span>a--------------</span><span class="style1">
             <input type="varchar" name="team" />
           </span></td>
@@ -138,7 +138,7 @@
                 <input type="varchar" name="sport" />
           </span></td>
           <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif">Status:</font><span class="style2">--------------- </span>
-                <input type="varchar" name="status" />
+                <input type="varchar" name="status" /-->
           </span></td>
           <td bgcolor="#FFFFCC"><span class="style1"> Payment Date: </span><span class="style4">----------</span><span class="style1">
             <input type="varchar" name="paymentdate" />
