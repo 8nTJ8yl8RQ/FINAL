@@ -61,14 +61,14 @@ $opts['inc'] = 15;
 // Options you wish to give the users
 // A - add,  C - change, P - copy, V - view, D - delete,
 // F - filter, I - initial sort suppressed
-$opts['options'] = 'ACPVDF';
+$opts['options'] = 'ACVDF';
 
 // Number of lines to display on multiple selection filters
 $opts['multiple'] = '4';
 
 // Navigation style: B - buttons (default), T - text links, G - graphic links
 // Buttons position: U - up, D - down (default)
-$opts['navigation'] = 'DB';
+$opts['navigation'] = 'G';
 
 // Display special page elements
 $opts['display'] = array(
@@ -179,12 +179,16 @@ $opts['fdd']['Position'] = array(
   'name'     => 'Position',
   'select'   => 'T',
   'maxlen'   => 40,
+  'values' => array(
+    'Guard','Forward','Power Forward', 'Center','Point Guard','Reserve'),
   'sort'     => true
 );
 $opts['fdd']['IsPrimaryPos'] = array(
   'name'     => 'IsPrimaryPos',
   'select'   => 'T',
   'maxlen'   => 3,
+  'values' => array(
+    'Yes','No'),
   'sort'     => true
 );
 

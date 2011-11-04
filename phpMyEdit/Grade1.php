@@ -50,14 +50,9 @@
       <div class="clr"></div>
       <div class="menu_nav">
         <ul>
+          <li><a href="index.php">ARMS</a></li>
           <li><a href="AthleteGradesmt.php">Athlete</a></li>
-          <li><a href="support.html">Coach</a></li>
-	  <li><a href="Grades.php">Grades</a></li>
-          <li><a href="about.html">Squad</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a href="Users.php">Users</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
+         </ul>
       </div>
       <div class="clr"></div>
     </div>
@@ -204,7 +199,7 @@ $opts['fdd']['Description'] = array(
   'sort'     => true
 );
 $opts['fdd']['SquadID'] = array(
-  'name'     => 'SquadID',
+  'name'     => 'Squad',
   'select'   => 'T',
   'maxlen'   => 11,
   'values' => array(
