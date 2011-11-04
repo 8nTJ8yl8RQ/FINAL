@@ -117,7 +117,7 @@
           <td bgcolor="#FFFFFF"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style5">*</span>ZipCode:<span class="style2">--- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font>
                 <input type="varchar" value="<?php echo "$zipcode"?>" name="zipcode" />
           </span></td>
-          <td><span class="style2"><span class="style7">Team:</span>a--------------</span><span class="style1">
+          <!--td><span class="style2"><span class="style7">Team:</span>a--------------</span><span class="style1">
             <input type="varchar" value="<?php echo "$"?>" name="team" />
           </span></td>
           <td bgcolor="#FFFFFF"><span class="style1"><font face="Arial, Helvetica, sans-serif"><span class="style4"><span class="style1">Squad:</span><span class="style2">---------------------</span></span></font>
@@ -130,7 +130,7 @@
           </span></td>
           <td bgcolor="#FFFFCC"><span class="style1"><font face="Arial, Helvetica, sans-serif">Status:</font><span class="style4">--------------- </span>
                 <input type="varchar" value="<?php echo "$"?>" name="status" />
-          </span></td>
+          </span></td-->
           <td bgcolor="#FFFFCC"><span class="style1"> Payment Date: </span><span class="style4">----------</span><span class="style1">
             <input type="varchar" value="<?php echo "$paymentdate"?>" name="paymentdate" />
           </span></td>
