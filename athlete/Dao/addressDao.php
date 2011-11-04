@@ -17,7 +17,7 @@ function at_addressUpdate($inAddressID=NULL, $inStreet=NULL, $inCity=NULL, $inCo
 {
 	     $sql_stmt = "UPDATE At_Address SET
 		                       AddressID='".$inAddressID."',Street='".$inStreet."',City='".$inCity."',Country='".$inCountry."',
-							   Province='".$inProvince."',PostalCode='".$inPostalCode."',Barangay='".inBarangay."' 
+							   Province='".$inProvince."',PostalCode='".$inPostalCode."',Barangay='".$inBarangay."' 
 							   WHERE At_Address.AddressID='".$inAddressID."'";
 					   
 		 mysql_query($sql_stmt);	
