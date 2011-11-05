@@ -1,24 +1,66 @@
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 		"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Bulilit Players</title>
+	<title>Bulilit Liga</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<link href="css/table_styles.css" rel="stylesheet" type="text/css" />
+			<link href="css/icon_styles.css" rel="stylesheet" type="text/css" />
+			<link href="style.css" rel="stylesheet" type="text/css" />
+			<script type="text/javascript" src="js/cufon-yui.js"></script>
+			<script type="text/javascript" src="js/arial.js"></script>
+			<script type="text/javascript" src="js/cuf_run.js"></script>
+			<script type="text/javascript" src="js/prototype.js"></script>
+			<script type="text/javascript" src="js/scriptaculous-js/scriptaculous.js"></script>
+			<script type="text/javascript" src="js/lang/lang_vars-en.js"></script>
+			<script type="text/javascript" src="js/ajax_table_editor.js"></script>
+			
+			<!-- calendar files -->
+			<link rel="stylesheet" type="text/css" media="all" href="js/jscalendar/skins/aqua/theme.css" title="win2k-cold-1" /> 
+			<script type="text/javascript" src="js/jscalendar/calendar.js"></script>
+			<script type="text/javascript" src="js/jscalendar/lang/calendar-en.js"></script>
+			<script type="text/javascript" src="js/jscalendar/calendar-setup.js"></script>
+
 <style type="text/css">
+			
 	hr.pme-hr		     { border: 0px solid; padding: 0px; margin: 0px; border-top-width: 1px; height: 1px; }
-	table.pme-main 	     { border: #004d9c 1px solid; border-collapse: collapse; border-spacing: 0px; width: 100%; }
-	table.pme-navigation { border: #004d9c 0px solid; border-collapse: collapse; border-spacing: 0px; width: 100%; }
+	table.pme-main 	     { border: 1px solid #3A3B3B; border-collapse: collapse; border-spacing: 0px; width: 100%; }
+	table.pme-navigation { border: 1px solid #3A3B3B; border-collapse: collapse; border-spacing: 0px; width: 100%; }
 	td.pme-navigation-0, td.pme-navigation-1 { white-space: nowrap; }
-	th.pme-header	     { border: #004d9c 1px solid; padding: 4px; background: #add8e6; }
+	th.pme-header	     { border: 1px solid #ccc; padding: 4px; background: #fff; }
 	td.pme-key-0, td.pme-value-0, td.pme-help-0, td.pme-navigation-0, td.pme-cell-0,
 	td.pme-key-1, td.pme-value-1, td.pme-help-0, td.pme-navigation-1, td.pme-cell-1,
-	td.pme-sortinfo, td.pme-filter { border: #004d9c 1px solid; padding: 3px; }
+	td.pme-sortinfo, td.pme-filter { border: 1px solid #ccc; padding: 3px; }
 	td.pme-buttons { text-align: left;   }
 	td.pme-message { text-align: center; }
 	td.pme-stats   { text-align: right;  }
 </style>
 </head>
 <body>
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+<!--      <div class="logo">
+        <h1><a href="#">Cream<span>Burn</span> <small>put your slogan here</small></a></h1>
+      </div> -->
+      <div class="clr"></div>
+      <div class="htext">
+      </div>
+      <div class="clr"></div>
+      <div class="menu_nav">
+        <ul>
+         <li><a href="index.php">ARMS</a></li>
+         <li><a href="Athlete1.php">Athlete</a></li>
+         <li><a href="SquadMemDetails1.php">Squad</a></li>
+         <li><a href="Team1.php">Team</a></li>
+         <li><a href="Coach1.php">Coach</a></li>
+        </ul>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+	<h3 align=center>Squad and Team Member Details</h3> 
 <?php
 
 /*
@@ -36,22 +78,24 @@
  *            phpMyEditSetup.php script: 1.50
  *              generating setup script: 1.50
  */
+ 
+// require_once('AthleteFinal.php');
 
 // MySQL host name, user name, password, database, and table
 $opts['hn'] = 'localhost';
 $opts['un'] = 'root';
 $opts['pw'] = '';
 $opts['db'] = 'bulilit';
-$opts['tb'] = 'athlete2';
+$opts['tb'] = 'TeamMemDetails';
 
 // Name of field which is the unique key
-$opts['key'] = 'ath_ID';
+$opts['key'] = 'TeamID';
 
 // Type of key field (int/real/string/date etc.)
 $opts['key_type'] = 'int';
 
 // Sorting field(s)
-$opts['sort_field'] = array('ath_ID');
+$opts['sort_field'] = array('TeamID');
 
 // Number of records to display on the screen
 // Value of -1 lists all records in a table
@@ -60,14 +104,14 @@ $opts['inc'] = 15;
 // Options you wish to give the users
 // A - add,  C - change, P - copy, V - view, D - delete,
 // F - filter, I - initial sort suppressed
-$opts['options'] = 'ACPVDF';
+$opts['options'] = 'ACVDF';
 
 // Number of lines to display on multiple selection filters
 $opts['multiple'] = '4';
 
 // Navigation style: B - buttons (default), T - text links, G - graphic links
 // Buttons position: U - up, D - down (default)
-$opts['navigation'] = 'DB';
+$opts['navigation'] = 'G';
 
 // Display special page elements
 $opts['display'] = array(
@@ -136,95 +180,61 @@ appear in generated list. Here are some most used field options documented.
   This is useful for giving more meaning to column values. Multiple
   descriptions fields are also possible. Check documentation for this.
 */
+$opts['fdd']['SquadID'] = array(
+  'name'     => 'SquadID',
+  'select'   => 'T',
+  'maxlen'   => 11,
+  'values' => array(
+    'table'  => 'Squad',
+    'column' => 'SquadID',
+    'description' => 'SquadKind'
+  ),
 
-$opts['fdd']['ath_ID'] = array(
-  'name'     => 'ID',
-  'select'   => 'T',
-  'options'  => 'AVCPDR', // auto increment
-  'maxlen'   => 8,
-  'default'  => '0',
   'sort'     => true
 );
-$opts['fdd']['ath_lastName'] = array(
-  'name'     => 'Last Name',
+$opts['fdd']['TeamID'] = array(
+  'name'     => 'TeamID',
   'select'   => 'T',
-  'maxlen'   => 25,
+  'maxlen'   => 11,
+  'values' => array(
+    'table'  => 'Team',
+    'column' => 'TeamID',
+    'description' => 'TeamName'
+  ),
+
   'sort'     => true
 );
-$opts['fdd']['ath_firstName'] = array(
-  'name'     => 'First Name',
+$opts['fdd']['MembershipID'] = array(
+  'name'     => 'Name',
   'select'   => 'T',
-  'maxlen'   => 25,
+  'maxlen'   => 11,
+  'values' => array(
+    'table'  => 'Athlete',
+    'column' => 'MembershipID',
+    'description' => 'FirstName'
+  ),
+
   'sort'     => true
 );
-$opts['fdd']['ath_middleName'] = array(
-  'name'     => 'Middle Name',
+
+
+$opts['fdd']['Position'] = array(
+  'name'     => 'Position',
   'select'   => 'T',
-  'maxlen'   => 25,
+  'maxlen'   => 40,
+  'values' => array(
+    'Guard','Forward','Power Forward', 'Center','Point Guard','Reserve'),
   'sort'     => true
 );
-$opts['fdd']['ath_gender'] = array(
-  'name'     => 'Sex',
+$opts['fdd']['IsPrimaryPos'] = array(
+  'name'     => 'IsPrimaryPos',
   'select'   => 'T',
-  'maxlen'   => 6,
+  'maxlen'   => 3,
+  'values' => array(
+    'Yes','No'),
   'sort'     => true
 );
-$opts['fdd']['ath_birthDate'] = array(
-  'name'     => 'Birth Date',
-  'select'   => 'T',
-  'maxlen'   => 10,
-  'sort'     => true
-);
-$opts['fdd']['ath_phoneNumber'] = array(
-  'name'     => 'Phone Number',
-  'select'   => 'T',
-  'maxlen'   => 60,
-  'sort'     => true
-);
-$opts['fdd']['ath_address'] = array(
-  'name'     => 'Address',
-  'select'   => 'T',
-  'maxlen'   => 50,
-  'sort'     => true
-);
-/*******************************************************
-$opts['fdd']['ath_locality'] = array(
-  'name'     => 'Locality',
-  'select'   => 'T',
-  'maxlen'   => 50,
-  'sort'     => true
-);
-$opts['fdd']['ath_province'] = array(
-  'name'     => 'Province',
-  'select'   => 'T',
-  'maxlen'   => 50,
-  'sort'     => true
-);
-$opts['fdd']['ath_zipCode'] = array(
-  'name'     => 'Zip Code',
-  'select'   => 'T',
-  'maxlen'   => 6,
-  'sort'     => true
-);
-************************************************************/
-$opts['fdd']['ath_status'] = array(
-  'name'     => 'Status',
-  'select'   => 'T',
-  'maxlen'   => 10,
-  'sort'     => true
-);
-$opts['fdd']['ath_squad'] = array(
-  'name'     => 'Squad',
-  'select'   => 'T',
-  'maxlen'   => 25,
-  'sort'     => true
-);
-$opts['fdd']['ath_sport'] = array(
-  'name'     => 'Sport',
-  'select'   => 'T',
-  'maxlen'   => 20,
-  'sort'     => true
-);
+
 
 // Now important call to phpMyEdit
 require_once 'phpMyEdit.class.php';

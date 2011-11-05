@@ -3,7 +3,7 @@
 		"http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>Bulilit Athletes</title>
+	<title>Bulilit Liga</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 			<link href="css/table_styles.css" rel="stylesheet" type="text/css" />
 			<link href="css/icon_styles.css" rel="stylesheet" type="text/css" />
@@ -50,13 +50,12 @@
       <div class="clr"></div>
       <div class="menu_nav">
         <ul>
-          <li><a href="AthleteGradesmt.php">Athlete</a></li>
-          <li><a href="support.html">Coach</a></li>
-	  <li><a href="Grades.php">Grades</a></li>
-          <li><a href="about.html">Squad</a></li>
-          <li><a href="team.php">Team</a></li>
-          <li><a href="Users.php">Users</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+         <li><a href="Sport1.php">Sport</a></li>
+         <li><a href="At_Address1.php">Address</a></li>
+         <li><a href="Athlete1.php">Athlete</a></li>
+         <li><a href="Guardian1.php">Guardian</a></li>
+         <li><a href="AtRelToGuard1.php">Relation</a></li>
+         
         </ul>
       </div>
       <div class="clr"></div>
