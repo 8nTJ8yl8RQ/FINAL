@@ -83,7 +83,7 @@
 // MySQL host name, user name, password, database, and table
 $opts['hn'] = 'localhost';
 $opts['un'] = 'root';
-$opts['pw'] = '';
+$opts['pw'] = 'n4UVFpHeHr';
 $opts['db'] = 'bulilit';
 $opts['tb'] = 'TeamCoach';
 
